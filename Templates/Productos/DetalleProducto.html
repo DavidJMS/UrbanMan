@@ -1,0 +1,66 @@
+{% extends "Base/Base.html"%}
+{% load staticfiles %}
+{% block Title %}
+Detalles
+{% endblock Title %}
+{% block CONTENT %}
+
+  <section class="content-header">
+        <h1>
+         Productos
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#">Productos</a></li>
+          <li class="active">Detalles-Productos</li>
+        </ol>
+  </section>
+  <section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+                      <!-- /.box -->
+          <div class="box">
+            <div class="box-header">
+              <h3 class="text-center "">Artículo</h3><br>
+              <h3 style="text-align: left;">{{Producto1.Categoria}} {{Producto1.Nombre}}</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead id="Producto-{{Producto.id}}">
+                <tr><th>Categoria:</th><td>{{Producto1.Categoria}}</td></tr>
+                <tr><th>Nombre:</th><td>{{Producto1.Nombre}}</td></tr>
+                <tr><th>Precio:</th><td>{{Producto1.Precio}}</td></tr>
+                <tr><th>Existencia:</th><td>{{Producto1.Existencia}}</td></tr>
+                <tr><th>Referencia:</th><td>{{Producto1.Referencia}}</td></tr>
+                <tr><th>Descripcion:</th><td>{{Producto1.descripcion}}</td></tr>
+                <tr><th>Imagen:</th><td><img style="width:200px; heigth:100px; border-radius:50%;" src="{{media}}media/{{Producto1.Imagen}}"></td></tr>
+                <tr><th>Fecha De Creacion:</th><td>{{Producto1.FechadeCreacion}}</td></tr>
+                <tr><th>Fecha De Modificacion:</th><td>{{Producto1.FechadeModificacion}}</td></tr>
+                </thead>
+              </table>
+             </div>
+            </div>
+          <div class="box-body pad table-responsive">
+              <a href="{% url 'Producto:EditarProducto' Producto1.id %}" type="button" class="btn btn-warning btn-block">
+              Editar Artículo
+              <i class="fa fa-plus-circle"></i>
+              </a>
+              <button type="button" style="margin-bottom: 0.1em;" class="btn btn-danger btn-block" value="{{Producto1.id}}" href="javascript:void(0)" onclick="EliminarProducto(this.value);">Eliminar</button>
+              <a class="btn btn-primary btn-block" href="{% url 'Producto:ListadeProductos' %}">
+                Regresar
+              <i class="fa fa-plus-circle"></i>
+              </a>
+          </div>
+         </div>
+     </div>
+  </section>
+          <!-- /.box -->
+{% endblock CONTENT %}
+{% block SCRIPTS %}
+<!-- DataTables -->
+<script type="text/javascript" src="{% static "Dist/Js/EliminarProducto.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script>  
+{% endblock SCRIPTS %}
+
+  

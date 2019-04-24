@@ -1,0 +1,96 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0 maximum-scale=1.0, minimun-scale=1.0">
+	<title>VIAD</title>
+  <link rel="icon"   href="{% static "media/imagenes/logo.jpg" %}" type="image/jpg">
+</head>
+<link rel="stylesheet"  href="{% static "css/bootstrap.min.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "Dist/Css/Contactanos.css" %}">
+<body id="Fondo" style="background:#EFEFF0;">
+
+<!--Comienzo de la seccion-->
+  <div class="row">
+    <div class="col-md-12">
+      <img src="{% static "media/imagenes/logo.jpg" %}" style="width: 100%; height: 200px;">
+    </div>
+  </div>
+<!--Final de la seccion-->
+<!--Inicio del menu-->
+  <header>
+    <nav class="navbar nav navbar navbar-dark bg-dark navbar-expand-sm ">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <div class="navbar-nav text-center" >
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-3">
+                <a class="nav-item nav-link" href="{% url 'UrbanMan:Man' %}">Nosotros</a>
+              </div>
+              <div class="col-md-4">
+                <a class="nav-item nav-link" href="{% url 'UrbanMan:Productos' %}">Tienda </a>
+              </div>
+              <div class="col-md-3">
+                <a class="nav-item nav-link active" href="#">Contactanos</a>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+        </div>
+    </nav>
+  </header> 
+<!--Final del menu-->
+<br><br><br><br>
+
+<!-- Inicio de las seiones-->
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div style="background:#;" class="col-md-12">
+        <p class="text-center" style="font-size: 3em;color: black;">Contactanos por cualquiera de estos medios</p>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="container"> 
+        <img style="width: 300px; height: 275px;"  src="{%static "media/imagenes/instagram.jpg "%}">
+      </div>
+      <h2 class="text-center" style="color: black;">Instagram</h2>
+      <a style="width:100%;color:black;" href="https://www.instagram.com/urbanmen1/" target="_blank"><button style="width: 100%; background: #041BDB;" type="button" class="btn btn-dark">Continuar</button></a>
+    </div>
+    <div class="col-md-3">
+      <div class="container"> 
+          <img style="width: 100%;"  src="{%static "media/imagenes/Whassap.jpg "%}">
+      </div>
+      <h2 class="text-center" style="color: black;">Whatssap</h2>
+      <a style="width: 100%;color: black;" href="https://api.whatsapp.com/send?phone=+584149977015&text=Buenas estoy interesado e sus productos" target="_blank" class="fa fa-whatsapp"><button style="width: 100%;background:#0469DB;" type="button" class="btn btn-dark">Continuar</button></a>
+    </div>
+    <div class="col-md-3">
+      <div class="container">
+          <img style="width: 100%;" src="{% static "media/imagenes/Gmail.jpg " %}" style="width: 225px; height: 225px;">
+      </div>
+      <h2 class="text-center" style="color: black;">Gmail</h2>
+      <button style="width: 100%;background:#FC7104;" type="button" class="btn btn-dark"urbanmen16@gmail.com onclick="Gmail();">Continuar</button>
+    </div>
+    <div class="col-md-3">
+      <div class="container"> 
+          <img style="width: 100%;" src="{%static "media/imagenes/Facebook.png "%}">
+      </div>    
+      <h2 class="text-center" style="color: black;">Facebook</h2>
+      <a  style="width: 100%;color: black;" href="https://m.facebook.com/urbanmen16" target="_blank" ><button style="width: 100%;background:#22DB04;" type="button" class="btn btn-dark">Continuar</button></a>
+    </div>
+  </div>
+</div>
+<!-- Final de las seiones-->
+</body>
+<script src="{% static "dist/js/jquery.min.js" %}"></script>
+<script src="{% static "dist/js/bootstrap.min.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script>
+</html>

@@ -1,0 +1,89 @@
+{% extends "Base/Base.html"%}
+{% load staticfiles %}
+{% block Title %}
+Lista de Productos
+{% endblock Title %}
+{% block Styles %}
+<!-- DataTables -->
+<link rel="stylesheet" href="{% static "bower_components/datatables.net-bs/css/dataTables.bootstrap.css" %}">
+{% endblock Styles %}
+{% block CONTENT %}
+
+  <section class="content-header">
+        <h1>
+         Productos
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#">Productos</a></li>
+          <li class="active">Productos-Lista</li>
+        </ol>
+  </section>
+  <section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+                      <!-- /.box -->
+
+          <div class="box">
+            <div class="box-header">
+              <h3 style="text-align: center;">Lista de Productos</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Categoria</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th>Imagen</th>                
+                </tr>
+                </thead>
+                <tbody>
+                {% for Producto in ListaProductos %}
+                <tr id="NuevoProducto-{{Producto.id}}">
+                  <td>{{Producto.Categoria}}</td>
+                  <td>{{Producto.Nombre}}</td>
+                  <td>{{Producto.Precio}}</td>
+                  <td><img style="width:200px; heigth:100px; border-radius:50%;" src="{{server}}media/{{Producto.Imagen}}"></td>
+                  <td>
+                    <a href="{% url 'Producto:DetalleProducto' Producto.id %}"class="btn btn-primary ">Ver</a>
+                  </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+      
+              </table>
+            </div>
+            <!-- /.box-body -->
+           
+              <div class="box-body pad table-responsive">
+              <a href="{% url 'Producto:NuevoProducto' %}" type="button" class="btn bg-olive btn-flat margin btn-block">
+              Añadir Producto
+              <i class="fa fa-plus-circle"></i>
+              </a>
+          </div>
+          </div>
+          <!-- /.box -->
+          
+<!-- DataTables -->
+{% endblock CONTENT %}
+{% block SCRIPTS %}
+<script src="{% static "bower_components/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+<script src="{% static "bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js" %}"></script>
+<script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+    });
+  </script>
+<script type="text/javascript" src="{% static "Dist/Js/EliminarProducto.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script> 
+{% endblock SCRIPTS %}

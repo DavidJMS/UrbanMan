@@ -1,0 +1,37 @@
+{% extends "Base/Base.html"%}
+{% load staticfiles %}
+{% block Title %}
+Detalles
+{% endblock Title %}
+{% block CONTENT %}
+  <section class="content-header">
+            <h1>
+             Producto
+            </h1>
+            <ol class="breadcrumb">
+              <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+              <li><a href="#">Producto</a></li>
+              <li class="active">Nuevo Producto</li>
+            </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-3">
+                <h2>Añadir Producto</h2>
+            </div>
+            <div class="col-xs-6">
+                <!-- Construir Mi Formulario -->
+            <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ Form.as_p }}
+                        <button class="btn btn-primary btn-block" type="submit">Enviar</button>
+                        <a class="btn btn-warning btn-block" href="{% url 'Producto:ListadeProductos' %} ">Regresar</a>
+                        </form>
+            </div>
+            <div class="col-xs-3"></div>
+        </div>
+    </section>
+{% endblock CONTENT %}
+{% block SCRIPTS %}
+{% endblock SCRIPTS %}
+
