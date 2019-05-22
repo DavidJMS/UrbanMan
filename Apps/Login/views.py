@@ -17,7 +17,7 @@ def Login(request):
 		user = authenticate(username=usuario , password = password)
 		if user is not None:
 			login_django(request, user)
-			return redirect('Login:Inicio')
+			return redirect('UrbanMan:Tienda')
 		else:
 			print('usuario invalido')
 	return render(request, 'Login/Login.html')
