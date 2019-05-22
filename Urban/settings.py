@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+import pymysql
+pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.Man',
     'Apps.Productos',
+    'Apps.Usuario',
+    'Apps.Carrito',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'Apps.ContextProcesors.server.serverData',
+                'Apps.ContextProcesors.Total.Total',                
             ],
         },
     },
@@ -78,8 +82,15 @@ WSGI_APPLICATION = 'Urban.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':"Urban",
+        "USER":"root",
+        "PASSWORD":'',
+        "PORT":'',
+        'HOST':"Localhost",
+        },
+        'OPTIONS': {
+            'sql_mode': 'traditional',
     }
 }
 
@@ -106,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/ 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -124,3 +135,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/' #carpeta que guardara los archivos subidos
 MEDIA_ROOT = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'media') #aqui creo la ruta y creo la carpeta media dentro de static
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER='david.marabay@gmail.com'
+EMAIL_HOST_PASSWORD= 'djms1005'
+EMAIL_PORT=587 

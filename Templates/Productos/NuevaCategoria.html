@@ -7,6 +7,7 @@ Nueva Categoria
 <link rel="stylesheet" href="{% static "bower_components/datatables.net-bs/css/dataTables.bootstrap.css" %}">
 {% endblock Styles %}
 {% block CONTENT %}
+{% if request.user.username == 'UrbanMan' %}
 <section class="content-header">
             <h1>
              Categoria
@@ -34,4 +35,14 @@ Nueva Categoria
             <div class="col-xs-3"></div>
         </div>
     </section>
+    {%endif%}
+  {% if request.user.username != 'UrbanMan' %}
+<section class="content-header">
+      <h1 class="text-center">
+        404 Error Page
+      </h1>
+      <h2 class="text-center">Lo sentimos pero su usuario no tiene permiso</h2>
+      </ol>
+    </section>
+  {%endif%}
 {% endblock CONTENT %}

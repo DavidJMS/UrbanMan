@@ -16,9 +16,15 @@ Including another URLconf
 from django.conf.urls import url , include
 from django.contrib import admin
 from django.conf import settings
+from django.conf.urls.static import static  #importo static para que muestre las img 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^UrbanMan/', include('Apps.Man.urls', namespace='UrbanMan')),
     url(r'^Login/', include('Apps.Login.urls', namespace='Login')),
     url(r'^Producto/', include('Apps.Productos.urls', namespace='Producto')),
+    url(r'^Usuario/', include('Apps.Usuario.urls', namespace='Usuario')),
+    url(r'^Carrito/', include('Apps.Carrito.urls', namespace='Carrito')),    
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #configuro mis rutas para que muestre las img

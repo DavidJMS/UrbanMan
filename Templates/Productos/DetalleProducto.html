@@ -4,7 +4,7 @@
 Detalles
 {% endblock Title %}
 {% block CONTENT %}
-
+{% if request.user.username == 'UrbanMan' %}
   <section class="content-header">
         <h1>
          Productos
@@ -27,14 +27,14 @@ Detalles
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
-                <thead id="Producto-{{Producto.id}}">
+                <thead id="Producto-{{Producto1.id}}">
                 <tr><th>Categoria:</th><td>{{Producto1.Categoria}}</td></tr>
                 <tr><th>Nombre:</th><td>{{Producto1.Nombre}}</td></tr>
                 <tr><th>Precio:</th><td>{{Producto1.Precio}}</td></tr>
                 <tr><th>Existencia:</th><td>{{Producto1.Existencia}}</td></tr>
                 <tr><th>Referencia:</th><td>{{Producto1.Referencia}}</td></tr>
                 <tr><th>Descripcion:</th><td>{{Producto1.descripcion}}</td></tr>
-                <tr><th>Imagen:</th><td><img style="width:200px; heigth:100px; border-radius:50%;" src="{{media}}media/{{Producto1.Imagen}}"></td></tr>
+                <tr><th>Imagen:</th><td><img style="width:200px; heigth:100px;" src="{{server}}media/{{Producto1.Imagen}}"></td></tr>
                 <tr><th>Fecha De Creacion:</th><td>{{Producto1.FechadeCreacion}}</td></tr>
                 <tr><th>Fecha De Modificacion:</th><td>{{Producto1.FechadeModificacion}}</td></tr>
                 </thead>
@@ -56,11 +56,19 @@ Detalles
      </div>
   </section>
           <!-- /.box -->
+  {%endif%}
+  {% if request.user.username != 'UrbanMan' %}
+<section class="content-header">
+      <h1 class="text-center">
+        404 Error Page
+      </h1>
+      <h2 class="text-center">Lo sentimos pero su usuario no tiene permiso</h2>
+      </ol>
+    </section>
+  {%endif%}
 {% endblock CONTENT %}
 {% block SCRIPTS %}
 <!-- DataTables -->
 <script type="text/javascript" src="{% static "Dist/Js/EliminarProducto.js" %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script>  
 {% endblock SCRIPTS %}
-
-  

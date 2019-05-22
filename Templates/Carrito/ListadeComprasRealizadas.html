@@ -1,0 +1,178 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0 maximum-scale=1.0, minimun-scale=1.0">
+  <title>Urban Man</title>
+  <link rel="icon"   href="{% static "media/imagenes/logo.jpg" %}" type="image/jpg">
+  <link rel="stylesheet" href="{% static "adminlte/css/AdminLTE.min.css" %}">
+  <link rel="stylesheet" href="{% static "adminlte/css/_all-skins.css" %}">
+</head>
+<link rel="stylesheet"  href="{% static "dist/css/bootstrap.min.css" %}">
+<link rel="stylesheet"  href="{% static "Dist/Css/Ropa.css" %}">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static "Dist/Css/simple-sidebar.css" %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<body id="Fondo" style="background:#E8E8E8;">
+<!--Comienzo de la seccion-->
+  <div style="background: white;" class="row">
+    <div class="col-md-12">
+      <img class="rounded mx-auto d-block" src="{% static "media/imagenes/logo.jpg" %}">
+    </div>
+  </div>
+<!--Final de la seccion-->
+<!--Inicio del menu-->
+  <header>
+    <nav class="navbar nav navbar navbar-dark bg-dark navbar-expand-sm ">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <div class="navbar-nav text-center" >
+              <div style="margin-left: 1.5em;" >
+                <a class="nav-item nav-link" href="{% url 'UrbanMan:Man' %}">Nosotros</a>
+              </div>
+              <div style="margin-left: 1.5em;" >
+                <a class="nav-item nav-link active" href="{% url 'UrbanMan:Tienda' %}">Tienda</a>
+              </div>
+              <div style="margin-left: 1.5em;" >
+                <a class="nav-item nav-link" href="#">Contactanos</a>
+              </div>
+              <div style="margin-left: 1.5em;" >
+                <a class="nav-item nav-link" href="{% url 'Login:Login'%}">Iniciar Sección</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </nav>
+  </header> 
+<section class="content">
+                      <!-- /.box -->
+<div class="box">
+      <div class="box-header container">
+          <h1 class="text-center display-5 my-5"><i class="fas fa-shopping-cart"> Lista de Compras</i></h1>
+            <h3 style="text-align: left;">Productos</h3>
+      </div>
+        <div class="container">
+          <div class="box-body">
+            <div class="row">
+            <div class="col-md-12">
+              <table id="example1" class="table table-striped table-bordered" style="width:100%,margin-bottom:1em;">
+                <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Precio</th>     
+                  <th>Número De Referencia</th>
+                  <th>Estado</th>  
+                  <th>Fecha De Pago</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for CompraRealizada in ListaCompras %}
+                <tr id="NuevoProducto-{{CompraTemporal.id}}">
+                  <td>{{CompraRealizada.Nombre}}</td>
+                  <td>{{CompraRealizada.Descripcion}}</td>
+                  <td>{{CompraRealizada.Precio}}</td>
+                  <td>{{CompraRealizada.NumeroReferenia}}</td>
+                  <td>{{CompraRealizada.Estado}}</td>
+                  <td>{{CompraRealizada.FechaPago}}</td>
+                {% endfor %}
+                </tr>
+                </tbody>
+              </table><br>  
+              <h3 style="text-align: left;">Facturas</h3>
+              <table id="example3" class="table table-striped table-bordered" style="width:100%,margin-bottom:1em;">
+                <thead>
+                <tr>
+                  <th>Numero De Referencia</th>
+                  <th>Banco De Pago</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>DNI</th>
+                  <th>Direccion De Envio</th>     
+                  <th>Estado</th>
+                  <th>Fecha De Pago</th>
+                  <th>Monto</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for Factura in ListaFactura %}
+                <tr id="NuevoProducto-{{CompraTemporal.id}}">
+                  <td>{{Factura.NumeroReferenia}}</td>
+                  <td>{{Factura.BancoPago}}</td>
+                  <td>{{Factura.Nombre}}</td>
+                  <td>{{Factura.Apellido}}</td>
+                  <td>{{Factura.Dni}}</td>
+                  <td>{{Factura.DireccionEnvio}}</td>
+                  <td>{{Factura.Verifiado}}</td>
+                  <td>{{Factura.FechaPago}}</td>
+                  <td>{{Factura.Monto}}</td>
+                {% endfor %}
+                </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+            <!-- /.box-body -->
+            </div>
+            </div>
+          </div>
+          </section>
+
+<!--Final del menu-->
+<!-- Inicio de las seiones-->
+<!-- Final de las seiones-->
+<!--Galeria-->
+
+<!-- Final de la galeria-->
+</body>
+
+<script src="{% static "dist/js/jquery.min.js" %}"></script>
+<script src="{% static "dist/js/bootstrap.min.js" %}"></script>
+<script src="{% static "dist/js/Carrito.js" %}"></script>
+ <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+  </script>
+<script src="{% static "Dist/js/Ropa.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script>
+<script src="{% static "bower_components/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+<script src="{% static "bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js" %}"></script>
+<script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+    });
+    $(function () {
+      $("#example3").DataTable();
+      $('#example4').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+    });
+  </script>
+<script type="text/javascript" src="{% static "Dist/Js/EliminarProducto.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script> 
+</tr>
+</tbody></table></div></div></div></div></section></body>
+</html>

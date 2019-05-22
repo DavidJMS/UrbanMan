@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 ## models form 
 from Apps.Productos.models import Categoria,Producto
 from django.forms import ModelForm, Media,TextInput, NumberInput,EmailInput,URLInput,PasswordInput,FileInput,Textarea,DateInput,DateTimeInput,Select
@@ -8,8 +10,6 @@ class FormularioCategoria(forms.ModelForm):
 		model  = Categoria
 		fields = [
 		'Nombre',
-		'FechadeCreacion',
-		'FechadeModificacion',
 		]
 		labels = {
 		'Nombre':'Nombre',
@@ -22,18 +22,6 @@ class FormularioCategoria(forms.ModelForm):
 			  'disabled':False,
 			  'autocomplete':'off',
 			   'placeholder':'Nombre De La Categoria'}),
-
-		'FechadeCreacion': DateInput(attrs={'class':'form-control', 
-			  'required':'False',
-			  'disabled':False,
-			  'autocomplete':'off',
-			   'placeholder':'Fecha De Creacion'}),
-
-		'FechadeModificacion': DateInput(attrs={'class':'form-control', 
-			  'required':'False',
-			  'disabled':False,
-			  'autocomplete':'off',
-			   'placeholder':'Fecha De Modificacion'}),
 		}
 
 class FormularioProducto(forms.ModelForm):
@@ -42,26 +30,29 @@ class FormularioProducto(forms.ModelForm):
 		fields = [
 		'Categoria',
 		'Nombre',
+		'Categoria1',
 		'Precio',
 		'Existencia',
 		'Referencia',
 		'descripcion',
 		'Imagen',
-		'FechadeCreacion',
-		'FechadeModificacion',
 		]
 		labels = {
 		'Categoria':'Categoria Del Producto',
 		'Nombre':'Nombre',
+		'Categoria1':'Nombre De La Categoria',
 		'Precio':'Precio Del Producto',
 		'Existencia':'Existencia Del Producto',
 		'Referencia':'Referencia Del Producto',
 		'descripcion':'Descripcion Del Producto',
 		'Imagen':'Imagen Del Producto',
-		'FechadeCreacion':'Fecha De Creacion',
-		'FechadeModificacion' : 'Fecha De Modificacion',
 		}
 		widgets = {
+		'Categoria1': TextInput(attrs={'class':'form-control', 
+			  'required':'False',
+			  'disabled':False,
+			  'autocomplete':'off',
+			   'placeholder':'Nombre De La Categoria'}),
 		'Nombre': TextInput(attrs={'class':'form-control', 
 			  'required':'False',
 			  'disabled':False,
@@ -97,14 +88,4 @@ class FormularioProducto(forms.ModelForm):
 						'required':'False',
 						'autocomplete':'off',
 						'placeholder':'Imagen Del Producto'}),
-		'FechadeCreacion': DateInput(attrs={'class':'form-control', 
-			  'required':'False',
-			  'disabled':False,
-			  'autocomplete':'off',
-			   'placeholder':'Fecha De Creacion'}),
-		'FechadeModificacion': DateInput(attrs={'class':'form-control', 
-			  'required':'False',
-			  'disabled':False,
-			  'autocomplete':'off',
-			   'placeholder':'Fecha De Modificacion'}),
 		}

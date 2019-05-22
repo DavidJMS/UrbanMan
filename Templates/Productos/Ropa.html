@@ -5,16 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0 maximum-scale=1.0, minimun-scale=1.0">
-	<title>VIAD</title>
+  <title>Urban Man</title>
   <link rel="icon"   href="{% static "media/imagenes/logo.jpg" %}" type="image/jpg">
+  <link rel="stylesheet" href="{% static "adminlte/css/AdminLTE.min.css" %}">
+  <link rel="stylesheet" href="{% static "adminlte/css/_all-skins.css" %}">
 </head>
 <link rel="stylesheet"  href="{% static "dist/css/bootstrap.min.css" %}">
-<body id="Fondo" style="background:#060606;">
-
+<link rel="stylesheet"  href="{% static "Dist/Css/Ropa.css" %}">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static "Dist/Css/simple-sidebar.css" %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+<body id="Fondo" style="background:#E8E8E8;">
+        
 <!--Comienzo de la seccion-->
-  <div class="row">
+  <div style="background: white;" class="row">
     <div class="col-md-12">
-      <img src="{% static "media/imagenes/logo.jpg" %}" style="width: 100%; height: 200px;">
+      <img class="rounded mx-auto d-block" src="{% static "media/imagenes/logo.jpg" %}">
     </div>
   </div>
 <!--Final de la seccion-->
@@ -26,18 +33,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <div class="navbar-nav text-center" >
-            <div class="row">
-              <div class="col-md-2"></div>
-              <div class="col-md-3">
+            <button class="btn btn-primary" id="menu-toggle">Más</button>
+              <div style="margin-left: 1.5em;" >
                 <a class="nav-item nav-link" href="{% url 'UrbanMan:Man' %}">Nosotros</a>
               </div>
-              <div class="col-md-4">
-                <a class="nav-item nav-link" href="{% url 'UrbanMan:Productos' %}">Productos </a>
+              <div style="margin-left: 1.5em;" >
+                <a class="nav-item nav-link active" href="{% url 'UrbanMan:Tienda' %}">Tienda</a>
               </div>
-              <div class="col-md-3">
-                <a class="nav-item nav-link active" href="#">Contactanos</a>
+              <div style="margin-left: 1.5em;" >
+                <a class="nav-item nav-link" href="#">Contactanos</a>
               </div>
-              <div class="col-md-2"></div>
+              <div style="margin-left: 1.5em;" >
+                <a class="nav-item nav-link" href="{% url 'Login:Login'%}">Iniciar Sección</a>
+              </div>
             </div>
           </div>
         </div>
@@ -45,10 +53,106 @@
   </header> 
 <!--Final del menu-->
 <!-- Inicio de las seiones-->
-<h2>Agregar inventario</h2>
 <!-- Final de las seiones-->
+<!--Galeria-->
+<div class="d-flex" id="wrapper">
+  
+    <!-- Sidebar -->
+  <div id="wrapper"> 
+    <div style="margin-right: 1em;" class="bg-light border-right" id="sidebar-wrapper" >
+      <div class="sidebar-heading">Categorias </div>
+      <div class="list-group list-group-flush">
+        {% for Categoria in ListaCategoria %}
+        <a href="{% url 'UrbanMan:TiendaCategoria' Categoria.id %} " class="list-group-item list-group-item-action bg-light">{{Categoria.Nombre}}</a>
+        {% endfor %}
+        <a href="{% url 'Carrito:Agregar' %}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-shopping-cart"> Carrito</i></a>
+        {% if request.user.username == 'UrbanMan' %}
+        <a href="{% url 'Producto:ListadeProductos' %}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-arrow-alt-circle-right"></i> Sistema</i></a>
+        {%endif%}
+        {% if request.user != none%}
+        <a href="{% url 'Login:Logout' %}" class="list-group-item list-group-item-action bg-light"><i class="fas fa-arrow-alt-circle-right"></i><span>Salir</span></a>
+        {%endif%}
+      </div>
+     </div>
+  </div>
+      <div  id="page-content-wrapper"> 
+        <h1 class="text-center display-4 my-4">Tienda</h1>
+        <table id="example1" class="table table-bordered table-striped" style="width: 100%; table-layout: fixed;">
+                <thead>
+                <tr>
+                  <th style="visibility: hidden;">Categoria</th>
+                  <th style="display: none;">Imagen</th>
+                  <th style="display: none;">Detalles</th>
+                  <th style="display: none;">Opciones</th> 
+                  <th style="width: 100%;" ></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for Producto in ListaProductos %}
+                <tr id="NuevoProducto-{{Producto.id}}">
+                  <td style="visibility: hidden
+                  ;"></td>
+                  <td style="background:#E8E8E8; ">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-6"> 
+                        <img src="{{server}}media/{{Producto.Imagen}}" class="card-img-top" alt="{{Producto.Nombre}}" style=" height: 350px; margin-bottom: 1em;">
+                        </div>
+                        <div class="col-md-6 col-lg-6">
+                          <div class="justify-content-right">
+            <h2 class="text-center">{{Producto.Nombre}}</h2>
+            <h3 class="text-left">Descripción: {{Producto.descripcion}}</h3>
+            <h3 class="text-left">Precio: {{Producto.Precio}}$</h3>
+            <h3 class="text-left">Existencia: {{Producto.Existencia}}</h3>
+             <button id="BotonCarrito" onclick="AñadirCarrito('{{Producto.id}}','{{Producto.Nombre}}','{{Producto.descripcion}}','{{Producto.Precio}}')"class="btn btn-dark btn-block fixed-botton">Agregar al carrito</button>
+          </div>
+                      </div>
+                        </div>
+                      
+                    
+                  </td>
+                    <td ></td>
+                      <td style="visibility: hidden;"> jjljl </td>
+                      <td style="visibility: hidden;">  </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        
+      
+    </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+<!-- Final de la galeria-->
 </body>
 <script src="{% static "dist/js/jquery.min.js" %}"></script>
 <script src="{% static "dist/js/bootstrap.min.js" %}"></script>
+<script src="{% static "dist/js/Carrito.js" %}"></script>
+<script src="{% static "dist/js/Buscador.js" %}"></script>
+
+<script src="{% static "bower_components/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+<script src="{% static "bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js" %}"></script>
+ <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+    });
+  </script>
+<script src="{% static "Dist/js/Ropa.js" %}"></script>
+<script src="{% static "Dist/js/Categoria.js" %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script>
 </html>

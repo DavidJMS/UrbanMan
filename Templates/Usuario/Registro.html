@@ -1,0 +1,69 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Urban Man| Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet"  href="{% static "dist/css/bootstrap.min.css" %}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static "bower_components/font-awesome/css/font-awesome.min.css" %}">
+  
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="{% static "bower_components/Ionicons/css/ionicons.min.css" %}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{% static "plugins/iCheck/square/orange.css" %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <link rel="stylesheet"  href="{% static "css/bootstrap.min.css" %}">
+  <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+</head>
+<body class="hold-transition login-page" style="background: #E8CF43;background-position: left; ">
+  <div style="background: white;" class="row">
+    <div class="col-md-12">
+      <img class="rounded mx-auto d-block" src="{% static "media/imagenes/logo.jpg" %}">
+    </div>
+  </div>
+  <header>
+</header> 
+  <!-- /.login-logo -->
+<div class="container">
+  <div style="  margin-top: 2em; box-shadow: 0px 0px 0px 1px gray; padding-bottom: 1.5em; padding-top: 1em; padding-right:  1.5em; padding-left: 1.5em; border-radius:0.5em; background:#F6EDBA;" class="login-form col-md-4 offset-md-4"> 
+    <h2 class=" text-center">Registrar Usuario</h2>
+    <section>
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <!-- Construir Mi Formulario -->
+            <form method="post" >
+                            {% csrf_token %}
+                            {{ form.as_p }}                            
+                        <button class="btn btn-primary btn-block" type="submit">Enviar</button>
+                        <a class="btn btn-warning btn-block" href="{% url 'Login:Login' %}">Regresar</a>
+            </form>
+            </div>
+            <div class="col-xs-2"></div>
+        </div>
+    </section>
+    </div>
+  </div>
+<!-- jQuery 3 -->
+<script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+<!-- iCheck -->
+<script src="{% static "plugins/iCheck/icheck.min.js" %}"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-orange',
+      radioClass: 'iradio_square-orange',
+      increaseArea: '20%' // optional
+    });
+  });
+</script>
+</body>
+</html>s

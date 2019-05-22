@@ -1,10 +1,12 @@
-{% extends "Base/Base.html"%}
-{% load staticfiles %}
-{% block Title %}
-Detalles
-{% endblock Title %}
-{% block CONTENT %}
 
+  {% extends "Base/Base.html"%}
+  {% load staticfiles %}
+  {% block Title %}
+  Detalles
+  {% endblock Title %}
+  {% block CONTENT %}
+{% if request.user.username == 'UrbanMan' %}
+{{request.user.username}}
   <section class="content-header">
         <h1>
          Categorias
@@ -49,9 +51,19 @@ Detalles
      </div>
   </section>
           <!-- /.box -->
-{% endblock CONTENT %}
-{% block SCRIPTS %}
-<!-- DataTables -->
-<script type="text/javascript" src="{% static "Dist/Js/EliminarCategoria.js" %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script>  
-{% endblock SCRIPTS %}
+  {%endif%}
+  {% if request.user.username != 'UrbanMan' %}
+<section class="content-header">
+      <h1 class="text-center">
+        404 Error Page
+      </h1>
+      <h2 class="text-center">Lo sentimos pero su usuario no tiene permiso</h2>
+      </ol>
+    </section>
+  {%endif%}
+  {% endblock CONTENT %}
+  {% block SCRIPTS %}
+  <!-- DataTables -->
+  <script type="text/javascript" src="{% static "Dist/Js/EliminarCategoria.js" %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.25.0/dist/sweetalert2.all.min.js"></script>  
+  {% endblock SCRIPTS %}

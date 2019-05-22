@@ -1,24 +1,27 @@
 {% extends "Base/Base.html"%}
 {% load staticfiles %}
 {% block Title %}
-Detalles
+Nueva Cuenta
 {% endblock Title %}
+{% block Styles %}
+<link rel="stylesheet" href="{% static "bower_components/datatables.net-bs/css/dataTables.bootstrap.css" %}">
+{% endblock Styles %}
 {% block CONTENT %}
 {% if request.user.username == 'UrbanMan' %}
-  <section class="content-header">
+<section class="content-header">
             <h1>
-             Producto
+             Cuenta
             </h1>
             <ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li><a href="#">Producto</a></li>
-              <li class="active">Nuevo Producto</li>
+              <li><a href="#">Cuentas</a></li>
+              <li class="active">Nueva Cuenta</li>
             </ol>
     </section>
     <section class="content">
         <div class="row">
             <div class="col-xs-3">
-                <h2>Añadir Producto</h2>
+                <h2>Añadir Cuenta</h2>
             </div>
             <div class="col-xs-6">
                 <!-- Construir Mi Formulario -->
@@ -26,7 +29,7 @@ Detalles
                             {% csrf_token %}
                             {{ Form.as_p }}
                         <button class="btn btn-primary btn-block" type="submit">Enviar</button>
-                        <a class="btn btn-warning btn-block" href="{% url 'Producto:ListadeProductos' %} ">Regresar</a>
+                        <a class="btn btn-warning btn-block" href="{% url 'Producto:ListaBanco' %}">Regresar</a>
                         </form>
             </div>
             <div class="col-xs-3"></div>
@@ -42,7 +45,4 @@ Detalles
       </ol>
     </section>
   {%endif%}
-{% endblock CONTENT %}
-{% block SCRIPTS %}
-{% endblock SCRIPTS %}
-
+  {% endblock CONTENT %}

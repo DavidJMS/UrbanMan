@@ -9,6 +9,7 @@ from Apps.Productos.views import EditarCategoria
 from Apps.Productos.views import EditarProducto
 from Apps.Productos.views import DetalleProducto
 from Apps.Productos.views import DetalleCategoria
+from Apps.Productos.views import CarritoTemporal , MetodoVista , ListaMetodo
 urlpatterns = [
     url(r'^Categoria/Nueva$',NuevaCategoria , name='NuevaCategoria' ),
 	url(r'^Producto/Nuevo$',NuevoProducto , name='NuevoProducto' ),
@@ -20,4 +21,7 @@ urlpatterns = [
 	url(r'^Categoria/Eliminar$',EliminarCategoria , name='EliminarCategoria' ),
 	url(r'^DetalleProducto/(?P<id_Producto>\d+)$', DetalleProducto , name='DetalleProducto'  ),	
 	url(r'^DetalleCategoria/(?P<id_Categoria1>\d+)$', DetalleCategoria , name='DetalleCategoria'  ),	
+	url(r'^AgregarCarrito/$', CarritoTemporal , name='CarritoTemporal'  ),
+	url(r'^Banco/$', MetodoVista , name='Banco'  ),
+	url(r'^ListaBanco/$', ListaMetodo , name='ListaBanco'  ),
 ]

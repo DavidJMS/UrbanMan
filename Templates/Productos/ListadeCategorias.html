@@ -7,6 +7,7 @@ Lista de Categorias
 <link rel="stylesheet" href="{% static "bower_components/datatables.net-bs/css/dataTables.bootstrap.css" %}">
 {% endblock Styles %}
 {% block CONTENT %}
+{% if request.user.username == 'UrbanMan' %}
   <section class="content-header">
         <h1>
          Categorias
@@ -63,6 +64,16 @@ Lista de Categorias
           <!-- /.box -->
           
 <!-- DataTables -->
+{%endif%}
+  {% if request.user.username != 'UrbanMan' %}
+<section class="content-header">
+      <h1 class="text-center">
+        404 Error Page
+      </h1>
+      <h2 class="text-center">Lo sentimos pero su usuario no tiene permiso</h2>
+      </ol>
+    </section>
+  {%endif%}
 {% endblock CONTENT %}
 {% block SCRIPTS %}
 <script src="{% static "bower_components/datatables.net/js/jquery.dataTables.min.js" %}"></script>
